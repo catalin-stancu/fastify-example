@@ -34,6 +34,8 @@ module.exports = {
             allowNull: false,
             type: DataTypes.DATE
         }
+      }, {
+        transaction: t
       });
 
       // Speed up queries after UUID and EMAIL
@@ -72,6 +74,16 @@ module.exports = {
             type: DataTypes.STRING(1000),
             allowNull: false
         },
+        user_uuid: {
+          type: DataTypes.UUID,
+          allowNull: false,
+          references: {
+              model: 'users',
+              key: 'uuid'
+          },
+          onUpdate: 'RESTRICT',
+          onDelete: 'CASCADE'
+        },
         created: {
           allowNull: false,
           type: DataTypes.DATE
@@ -80,6 +92,8 @@ module.exports = {
             allowNull: false,
             type: DataTypes.DATE
         }
+      }, {
+        transaction: t
       });
 
       // Speed up queries after UUID
@@ -90,17 +104,25 @@ module.exports = {
         name: 'notes_uuid_index_unique',
         transaction: t
       });
-    })
+
+      await queryInterface.addIndex('notes', {
+        unique: false,
+        using: 'HASH',
+        fields: ['user_uuid'],
+        name: 'notes_user_uuid_index',
+        transaction: t
+      });
+    });
   },
   down: (queryInterface) => {
     return queryInterface.sequelize.transaction(async t => {
         // Delete tables in their bottom-up dependency order
-        await queryInterface.dropTable('users', {
+        await queryInterface.dropTable('notes', {
             transaction: t,
             cascade: true
         });
 
-        await queryInterface.dropTable('notes', {
+        await queryInterface.dropTable('users', {
             transaction: t,
             cascade: true
         });

@@ -1,4 +1,5 @@
-const ErrorSchema = require('../../../utils/common-schemas/errorSchema')
+const ErrorSchema = require('../../../utils/common-schemas/errorSchema');
+const { NoteResponse } = require('../../notes/schemas/createNote');
 
 const UserProperties = {
     firstname: {
@@ -22,7 +23,8 @@ const UserProperties = {
 const UserBody = {
     type: 'object',
     required: ['firstname', 'lastname', 'email'],
-    properties: UserProperties
+    properties: UserProperties,
+    additionalProperties: false
 };
 
 const UserResponse = {
@@ -31,6 +33,10 @@ const UserResponse = {
         ...UserProperties,
         uuid: {
             type: 'string'
+        },
+        notes: {
+            type: 'array',
+            items: NoteResponse
         }
     }
 };

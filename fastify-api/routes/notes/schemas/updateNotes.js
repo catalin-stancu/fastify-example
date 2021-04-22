@@ -1,23 +1,22 @@
 const ErrorSchema = require('../../../utils/common-schemas/errorSchema');
 const idParamsSchema = require('../../../utils/common-schemas/idParamsSchema');
-const { UserProperties, UserResponse } = require('./createUser');
+const { NoteProperties, NoteResponse } = require('./createNote');
 
-const UserBody = {
+const NoteBody = {
     type: 'object',
     anyOf: [
-        { required: ['firstname'] },
-        { required: ['lastname'] },
-        { required: ['email'] }
+        { required: ['title'] },
+        { required: ['description'] }
     ],
-    properties: UserProperties,
+    properties: NoteProperties,
     additionalProperties: false
 };
 
 const schema = {
     params: idParamsSchema,
-    body: UserBody,
+    body: NoteBody,
     response: {
-        200: UserResponse,
+        200: NoteResponse,
         400: ErrorSchema,
         404: ErrorSchema,
         409: ErrorSchema,

@@ -3,15 +3,16 @@ const { NotFound } = require('http-errors');
 
 class UsersService {
 
-    constructor(model ,logger) {
+    constructor(model, logger, notesService) {
         this.userModel = model;
         this.logger = logger;
+        this.notesService = notesService;
         if (!this.userModel) throw new Error('Missing database table definition');
     }
 
     async findUsers() {
         this.logger.info('Getting all users');
-        return this.userModel.findAll();
+        return this.userModel.findAll({ include: this.notesService.noteModel });
     }
 
     async findById(userId) {
@@ -39,6 +40,32 @@ class UsersService {
             throw new NotFound(`User with ID ${userId} not found!`)
         }
         return updatedUser[0];
+    }
+
+    async deleteUser(userId) {
+        this.logger.info(`Deleting user with ID ${userId}`)
+        const rowsAffected = await this.userModel.destroy({
+            where: { uuid: userId }
+        });
+        if (!rowsAffected) {
+            throw new NotFound(`User with ID ${userId} not found!`)
+        }
+    }
+
+    async createNote(userId, notePayload) {
+        this.logger.info(`User with ID ${userId} is creating a note. Payload ${JSON.stringify(notePayload)}`);
+        const user = await this.findById(userId);
+        return this.notesService.createNote({...notePayload, user_uuid: user.uuid});
+    }
+
+    async getNotesForUser(userId) {
+        this.logger.info(`Get notes for user with ID ${userId}`);
+        return this.notesService.findNotes({ where: { user_uuid: userId }});
+    }
+
+    async updateNote(userId, noteId, noteUpdatePayload) {
+        this.logger.info(`User with ID ${userId} is updating note with ID ${noteId}`);
+        return this.notesService.updateNote(userId, noteId, noteUpdatePayload);
     }
 }
 

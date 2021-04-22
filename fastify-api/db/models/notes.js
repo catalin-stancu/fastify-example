@@ -15,7 +15,8 @@ module.exports = (sequelize, DataTypes) => {
         static associate(db) {
             // Connect notes -> users
             db.notes.belongsTo(db.users, {
-                foreignKey: 'user_uuid'
+                foreignKey: 'user_uuid',
+                targetKey: 'uuid'
             })
         }
     }
@@ -32,6 +33,10 @@ module.exports = (sequelize, DataTypes) => {
         },
         description: {
             type: DataTypes.STRING(1000),
+            allowNull: false
+        },
+        user_uuid: {
+            type: DataTypes.UUID,
             allowNull: false
         }
     }, {

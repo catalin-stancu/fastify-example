@@ -14,7 +14,10 @@ module.exports = (sequelize, DataTypes) => {
          */
         static associate(db) {
             // Connect notes -> users
-            db.users.hasMany(db.notes)
+            db.users.hasMany(db.notes, { 
+                foreignKey: 'user_uuid', 
+                sourceKey: 'uuid' 
+            })
         }
     }
 
