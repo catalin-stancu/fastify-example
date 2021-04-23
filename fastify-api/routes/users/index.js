@@ -6,18 +6,12 @@ const idParamsSchema = require('../../utils/common-schemas/idParamsSchema');
 const createNoteSchema = require('../notes/schemas/createNote');
 const findNotesSchema = require('../notes/schemas/findNotes');
 const updateNoteSchema = require('../notes/schemas/updateNotes');
-const UsersService = require('./service');
 
 /**
  * @param {import('fastify').FastifyInstance} fastify
  */
  const routes = async fastify => {
-  const usersService = new UsersService(
-      fastify.db.modelManager.getModel('users') || null,
-      fastify.log,
-      fastify.notesService,
-      fastify.cacheService
-    );
+  const usersService = fastify.usersService
 
   fastify.get(
     '/', 

@@ -71,4 +71,6 @@ module.exports = fp(async (fastify, opts) => {
     } catch (error) {
         fastify.log.error('Unable to connect to database', error);
     }
+}, {
+    name: 'db'
 });
