@@ -3,31 +3,53 @@ const { NotFound } = require('http-errors');
 
 class UsersService {
 
-    constructor(model, logger, notesService) {
+    constructor(model, logger, notesService, cacheService) {
         this.userModel = model;
         this.logger = logger;
         this.notesService = notesService;
+        this.cacheService = cacheService;
         if (!this.userModel) throw new Error('Missing database table definition');
     }
 
     async findUsers() {
         this.logger.info('Getting all users');
-        return this.userModel.findAll({ include: this.notesService.noteModel });
+        const cacheKey = `${this.userModel}:find`;
+        const cacheResult = await this._checkCache(cacheKey);
+        if (cacheResult) {
+            return cacheResult;
+        }
+        const results = await this.userModel.findAll();
+        this.logger.info('Caching the result');
+        this.cacheService.set(cacheKey, results);
+        return results;
     }
 
     async findById(userId) {
         this.logger.info(`Get user with ID ${userId}`);
-        const user = await this.userModel.findOne({ where: { uuid: userId }});
+        const cacheKey = `${this.userModel}:findById:${userId}`;
+        const cacheResult = await this._checkCache(cacheKey);
+        if (cacheResult) {
+            return cacheResult;
+        }
+        const user = await this.userModel.findOne({ 
+            where: { uuid: userId }, 
+            include: this.notesService.noteModel 
+        });
         if (!user) {
             throw new NotFound(`User with ID ${userId} not found!`)
         }
+        this.logger.info('Caching the result');
+        this.cacheService.set(cacheKey, user);
         return user;
     }
 
     async createUser(userData) {
         this.logger.info(`Creating user with payload: ${JSON.stringify(userData)}`);
         const uuid = uuidv4();
-        return this.userModel.create({...userData, uuid});
+        const user = await this.userModel.create({...userData, uuid});
+        this.logger.info('Invalidating cache for lists');
+        this.cacheService.delete(`${this.userModel}:find`);
+        return user;
     }
 
     async updateUser(userId, updateUserData) {
@@ -39,6 +61,9 @@ class UsersService {
         if (!rowsAffected) {
             throw new NotFound(`User with ID ${userId} not found!`)
         }
+        this.logger.info('Invalidating cache');
+        this.cacheService.delete(`${this.userModel}:find`);
+        this.cacheService.delete(`${this.userModel}:findById:${userId}`);
         return updatedUser[0];
     }
 
@@ -50,12 +75,18 @@ class UsersService {
         if (!rowsAffected) {
             throw new NotFound(`User with ID ${userId} not found!`)
         }
+        this.logger.info('Invalidating cache');
+        this.cacheService.delete(`${this.userModel}:find`);
+        this.cacheService.delete(`${this.userModel}:findById:${userId}`);
     }
 
     async createNote(userId, notePayload) {
         this.logger.info(`User with ID ${userId} is creating a note. Payload ${JSON.stringify(notePayload)}`);
         const user = await this.findById(userId);
-        return this.notesService.createNote({...notePayload, user_uuid: user.uuid});
+        const note = await this.notesService.createNote({...notePayload, user_uuid: user.uuid});
+        this.logger.info('Invalidating cache');
+        this.cacheService.delete(`${this.userModel}:findById:${userId}`);
+        return note;
     }
 
     async getNotesForUser(userId) {
@@ -65,7 +96,21 @@ class UsersService {
 
     async updateNote(userId, noteId, noteUpdatePayload) {
         this.logger.info(`User with ID ${userId} is updating note with ID ${noteId}`);
-        return this.notesService.updateNote(userId, noteId, noteUpdatePayload);
+        const note = await this.notesService.updateNote(userId, noteId, noteUpdatePayload);
+        this.logger.info('Invalidating cache');
+        this.cacheService.delete(`${this.userModel}:findById:${userId}`);
+        return note;
+    }
+
+    async _checkCache(cacheKey) {
+        this.logger.info('Checking cache for results');
+        const foundInCache = await this.cacheService.get(cacheKey);
+        if (foundInCache) {
+            const ttl = await this.cacheService.ttl(cacheKey);
+            this.logger.info(`Cache hit! Serving results from cache. TTL: ${ttl} seconds`);
+            return foundInCache;
+        }
+        this.logger.info('Cache not hit. Query the DB');
     }
 }
 

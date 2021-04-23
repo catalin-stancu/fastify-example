@@ -15,7 +15,8 @@ const UsersService = require('./service');
   const usersService = new UsersService(
       fastify.db.modelManager.getModel('users') || null,
       fastify.log,
-      fastify.notesService
+      fastify.notesService,
+      fastify.cacheService
     );
 
   fastify.get(

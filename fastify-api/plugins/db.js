@@ -1,4 +1,3 @@
-const { default: fastify } = require('fastify');
 const fp = require('fastify-plugin');
 const sequelize = require('sequelize');
 const tablesDefinitions = require('../db/tables');

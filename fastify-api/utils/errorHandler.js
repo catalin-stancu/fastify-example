@@ -1,5 +1,4 @@
 const { ValidationError } = require("sequelize");
-const fastify = require('fastify');
 
 const PostgresErrorCode = {
     UniqueViolation: '23505'

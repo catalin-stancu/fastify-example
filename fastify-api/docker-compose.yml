@@ -1,6 +1,20 @@
 version: '3.1'
 services:
   ################################
+  #   Setup CACHE container
+  ################################
+  dev_cache:
+    build:
+      context: ${REPO_CACHE}
+      dockerfile: Dockerfile
+      args:
+        - CACHE_REMOTE_PORT=${CACHE_REMOTE_PORT}
+    ports:
+      - ${CACHE_EXTERNAL_PORT_DEV}:${CACHE_REMOTE_PORT}
+    container_name: dev_cache_fastify
+    networks:
+      - web
+  ################################
   #   Setup DB container
   ################################
   dev_db:
