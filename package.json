@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "fastify-redis": "^4.3.0"
+  }
+}

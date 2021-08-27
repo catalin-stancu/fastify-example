@@ -1,0 +1,25 @@
+ApiVersion: v1
+kind: Pod
+metadata:
+  namespace: jenkins
+spec:
+  serviceAccountName: jenkins
+  containers:
+    - name: docker
+      image: docker
+      command: ["tail", "-f", "/dev/null"]
+      securityContext:
+        runAsUser: 0
+        runAsGroup: 0
+      tty: true
+      volumeMounts:
+        - name: docker
+          mountPath: /var/run/docker.sock
+    - name: kubectl
+      image: gcr.io/cloud-builders/kubectl
+      command: ["tail", "-f", "/dev/null"]
+      tty: true
+  volumes:
+    - name: docker
+      hostPath:
+        path: /var/run/docker.sock

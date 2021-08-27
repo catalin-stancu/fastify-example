@@ -1,0 +1,21 @@
+{
+  "An unexpected error occurred. Contact the system admin": "An unexpected error occurred. Contact the system admin",
+  "Route {{routeName}} not found": "Route {{{routeName}}} not found",
+  "Syntax error at query parsing in {{ops}} expression: there are more or less operators than appropriate for the number of operands": "Syntax error at query parsing in {{ops}} expression: there are more or less operators than appropriate for the number of operands",
+  "Syntax error at query parsing in {{ops}} expression: identifier at position {{pos}} should be a number encased in {{delimStart}}123{{delimEnd}}": "Syntax error at query parsing in {{ops}} expression: identifier at position {{pos}} should be a number encased in {{delimStart}}123{{delimEnd}}",
+  "Syntax error at query parsing in {{ops}} expression: the id segment is empty at position {{pos}}": "Syntax error at query parsing in {{ops}} expression: the id segment is empty at position {{pos}}",
+  "Syntax error at query parsing in {{ops}} expression: the id {{id}} is not present in the {{fld}} query field parameters": "Syntax error at query parsing in {{ops}} expression: the id {{id}} is not present in the {{fld}} query field parameters",
+  "Syntax error at query parsing in {{ops}} expression: missing operator (e.g. {{opList}}) at position {{pos}}": "Syntax error at query parsing in {{ops}} expression: missing operator (e.g. {{opList}}) at position {{pos}}",
+  "Syntax error at query parsing in {{ops}} expression: invalid character at position {{pos}}, expected {{delimStart}}": "Syntax error at query parsing in {{ops}} expression: invalid character at position {{pos}}, expected {{delimStart}}",
+  "Syntax error at query parsing in {{ops}} expression: invalid operator {{op}} at position {{pos}}": "Syntax error at query parsing in {{ops}} expression: invalid operator {{op}} at position {{pos}}",
+  "Syntax error at query parsing in {{ops}} expression: the expression is empty at position {{pos}}": "Syntax error at query parsing in {{ops}} expression: the expression is empty at position {{pos}}",
+  "Syntax error at parsing query parameter {{fieldName}}: should be {{format}}": "Syntax error at parsing query parameter {{fieldName}}: should be {{format}}",
+  "Syntax error at parsing query parameter {{fieldName}}: invalid operator {{op}}": "Syntax error at parsing query parameter {{fieldName}}: invalid operator {{op}}",
+  "Syntax error at parsing query parameter {{name}}: order parameter should be {{format}}": "Syntax error at parsing query parameter {{name}}: order parameter should be {{format}}",
+  "Syntax error at parsing query parameter {{name}}: order direction should be one of: {{dir}}": "Syntax error at parsing query parameter {{name}}: order direction should be one of: {{dir}}",
+  "Syntax error at parsing query parameter {{fieldName}}: no value provided for {{op}}": "Syntax error at parsing query parameter {{fieldName}}: no value provided for {{op}}",
+  "Syntax error at parsing query: {{ops}} expression is specified but no fields are present": "Syntax error at parsing query: {{ops}} expression is specified but no fields are present",
+  "Syntax error at parsing query parameter {{fieldName}}: column {{columnName}} is not valid or allowed": "Syntax error at parsing query parameter {{fieldName}}: column {{columnName}} is not valid or allowed",
+  "Syntax error at parsing order parameter {{name}}: column {{columnName}} is not valid or allowed for sorting": "Syntax error at parsing order parameter {{name}}: column {{columnName}} is not valid or allowed for sorting",
+	"Received input in response.addError() is not an instance of Error": "Received input in response.addError() is not an instance of Error"
+}

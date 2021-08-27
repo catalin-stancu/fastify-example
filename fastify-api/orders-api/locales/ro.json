@@ -1,0 +1,7 @@
+{
+	"Order not found": "Comanda nu a fost găsită",
+	"Returns must not contain items that are not included in the order": "Retururile nu pot conține produse care nu sunt incluse în comandă",
+	"Quantities for returned items must not be greater than the sum between the quantities of registered products in the order and the quantities of products from other existing returns": "Cantitățile produselor returnate nu pot fi mai mari decât suma dintre cantitățile produselor înregistrate în comandă și cantitățile produselor din alte retururi existente",
+	"The products array cannot contain multiple instances of the same product": "Lista de produse nu poate avea mai multe instanțe ale aceluiași produs",
+	"Returns cannot contain products that have negative or null quantities": "Retururile nu pot conține produse care au cantități negative sau nule"
+}

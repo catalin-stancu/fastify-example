@@ -1,0 +1,7 @@
+{
+  "Order not found": "Order not found",
+  "Returns must not contain items that are not included in the order": "Returns must not contain items that are not included in the order",
+  "Quantities for returned items must not be greater than the sum between the quantities of registered products in the order and the quantities of products from other existing returns": "Quantities for returned items must not be greater than the sum between the quantities of registered products in the order and the quantities of products from other existing returns",
+  "The products array cannot contain multiple instances of the same product": "The products array cannot contain multiple instances of the same product",
+  "Returns cannot contain products that have negative or null quantities": "Returns cannot contain products that have negative or null quantities"
+}

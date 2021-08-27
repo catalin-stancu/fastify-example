@@ -1,0 +1,68 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: oms
+  name: oms
+  namespace: default
+spec:
+  progressDeadlineSeconds: 600
+  replicas: 1
+  revisionHistoryLimit: 10
+  selector:
+    matchLabels:
+      app: oms
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: oms
+    spec:
+      containers:
+        - env:
+            - name: GOOGLE_APPLICATION_CREDENTIALS
+              value: /var/secrets/google/oms-service-acc
+            - name: POSTGRES_DB
+              valueFrom:
+                secretKeyRef:
+                  key: string
+                  name: oms-postgres-db
+            - name: POSTGRES_USER
+              valueFrom:
+                secretKeyRef:
+                  key: string
+                  name: oms-postgres-user
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  key: string
+                  name: oms-postgres-password
+          envFrom:
+            - configMapRef:
+                name: oms-config-ta4r
+          image: eu.gcr.io/explorado-ecomm-dev/oms:0.0.0
+          imagePullPolicy: IfNotPresent
+          name: oms-sha256-1
+          resources:
+            requests:
+              cpu: 100m
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+          volumeMounts:
+            - mountPath: /var/secrets/google
+              name: oms-service-acc
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext: {}
+      terminationGracePeriodSeconds: 30
+      volumes:
+        - name: oms-service-acc
+          secret:
+            defaultMode: 420
+            secretName: oms-service-acc

@@ -1,0 +1,21 @@
+{
+	"An unexpected error occurred. Contact the system admin": "A apărut o problemă neașteptată. Va rugăm contactați administratorul.",
+	"Route {{routeName}} not found": "Ruta {{{routeName}}} nu a fost găsită",
+	"Syntax error at query parsing in {{ops}} expression: there are more or less operators than appropriate for the number of operands": "Eroare de sintaxă la parsarea expresiei din {{ops}}: numărul de operatori nu se potrivește cu numărul de operanzi",
+	"Syntax error at query parsing in {{ops}} expression: identifier at position {{pos}} should be a number encased in {{delimStart}}123{{delimEnd}}": "Eroare de sintaxă la parsarea expresiei din {{ops}}: identificatorul de la poziția {{pos}} ar trebui să fie un număr între {{delimStart}}123{{delimEnd}}",
+	"Syntax error at query parsing in {{ops}} expression: the id segment is empty at position {{pos}}": "Eroare de sintaxă la parsarea expresiei din {{ops}}: segmentul cu id este gol la poziția {{pos}}",
+	"Syntax error at query parsing in {{ops}} expression: the id {{id}} is not present in the {{fld}} query field parameters": "Eroare de sintaxă la parsarea expresiei din {{ops}}: id-ul {{id}} nu este prezent în nici un parametru de tip {{fld}}",
+	"Syntax error at query parsing in {{ops}} expression: missing operator (e.g. {{opList}}) at position {{pos}}": "Eroare de sintaxă la parsarea expresiei din {{ops}}: operator lipsă (e.g. {{opList}}) la poziția {{pos}}",
+	"Syntax error at query parsing in {{ops}} expression: invalid character at position {{pos}}, expected {{delimStart}}": "Eroare de sintaxă la parsarea expresiei din {{ops}}: caracter invalid la poziția {{pos}}, trebuia să fie {{delimStart}}",
+	"Syntax error at query parsing in {{ops}} expression: invalid operator {{op}} at position {{pos}}": "Eroare de sintaxă la parsarea expresiei din {{ops}}: operator invalid {{op}} la poziția {{pos}}",
+	"Syntax error at query parsing in {{ops}} expression: the expression is empty at position {{pos}}": "Eroare de sintaxă la parsarea expresiei din {{ops}}: expresia nu conține nimic la poziția {{pos}}",
+	"Syntax error at parsing query parameter {{fieldName}}: should be {{format}}": "Eroare de sintaxă la parsarea parametrului {{fieldName}}: ar trebui să aibă formatul {{format}}",
+	"Syntax error at parsing query parameter {{fieldName}}: invalid operator {{op}}": "Eroare de sintaxă la parsarea parametrului {{fieldName}}: operator invalid {{op}}",
+	"Syntax error at parsing query parameter {{name}}: order parameter should be {{format}}": "Eroare de sintaxă la parsarea parametrului {{name}}: parameterul de sortare ar trebuie să aibă formatul {{format}}",
+	"Syntax error at parsing query parameter {{name}}: order direction should be one of: {{dir}}": "Eroare de sintaxă la parsarea parametrului {{name}}: direcția de sortare poate fi doar {{dir}}",
+	"Syntax error at parsing query parameter {{fieldName}}: no value provided for {{op}}": "Eroare de sintaxă la parsarea parametrului {{fieldName}}: nu este prezentă nici o valoare pentru operatorul {{op}}",
+	"Syntax error at parsing query: {{ops}} expression is specified but no fields are present": "Eroare de sintaxă la parsarea query: expresia {{ops}} este prezentă însă nici un filtru nu este specificat",
+	"Syntax error at parsing query parameter {{fieldName}}: column {{columnName}} is not valid or allowed": "Eroare de sintaxă la parsarea parametrului {{fieldName}}: coloana {{columnName}} nu este permisă sau validă",
+	"Syntax error at parsing order parameter {{name}}: column {{columnName}} is not valid or allowed for sorting": "Eroare de sintaxă la parsarea parametrului de sortare {{name}}: coloana {{columnName}} nu este validă sau permisă pentru sortare",
+	"Received input in response.addError() is not an instance of Error": "Received input in response.addError() is not an instance of Error"
+}

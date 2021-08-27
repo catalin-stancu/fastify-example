@@ -1,0 +1,882 @@
+{
+	"info": {
+		"_postman_id": "8bcd6fac-5095-4352-9c02-f5a7f68f1b9f",
+		"name": "DAM",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Stacks",
+			"item": [
+				{
+					"name": "/stacks/:uuid",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{DAM_HOST}}/stacks/:uuid",
+							"host": [
+								"{{DAM_HOST}}"
+							],
+							"path": [
+								"stacks",
+								":uuid"
+							],
+							"variable": [
+								{
+									"key": "uuid",
+									"value": "d57a04bb-93ef-4bc8-a11c-d85d31f1a865"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/stacks",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{DAM_HOST}}/stacks?fld[status][eq]=active",
+							"host": [
+								"{{DAM_HOST}}"
+							],
+							"path": [
+								"stacks"
+							],
+							"query": [
+								{
+									"key": "fld[status][eq]",
+									"value": "active"
+								},
+								{
+									"key": "fld[type][eq]",
+									"value": "file",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/stacks/:uuid",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{DAM_HOST}}/stacks/:uuid",
+							"host": [
+								"{{DAM_HOST}}"
+							],
+							"path": [
+								"stacks",
+								":uuid"
+							],
+							"variable": [
+								{
+									"key": "uuid",
+									"value": "1302be0d-c760-4a7d-bd59-df737bc62a0c"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/entities/:uuid/urls",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{DAM_HOST}}/entities/:uuid/urls",
+							"host": [
+								"{{DAM_HOST}}"
+							],
+							"path": [
+								"entities",
+								":uuid",
+								"urls"
+							],
+							"variable": [
+								{
+									"key": "uuid",
+									"value": "c83f5d89-9467-46ad-8201-bd8e40392a1a"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/stacks (actually a GET list)",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"uuids\": [\"15e0fdd5-541b-4a3d-ac30-3cb5506bb679\"]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{DAM_HOST}}/stacks",
+							"host": [
+								"{{DAM_HOST}}"
+							],
+							"path": [
+								"stacks"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/entities/upload",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "files[]",
+									"type": "file",
+									"src": "/C:/Users/MihaiGaita/Pictures/forest-fullhd.jpg"
+								},
+								{
+									"key": "tags[]",
+									"value": "file1",
+									"type": "text"
+								},
+								{
+									"key": "renames[]",
+									"value": "Good image",
+									"type": "text"
+								},
+								{
+									"key": "tags[]",
+									"value": "file2",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "renames[]",
+									"value": "Good document",
+									"type": "text",
+									"disabled": true
+								}
+							],
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{DAM_HOST}}/entities/upload?usage=cms&resource_type=banner&resource_name=Iphone 12&resource_id=SRX-12345",
+							"host": [
+								"{{DAM_HOST}}"
+							],
+							"path": [
+								"entities",
+								"upload"
+							],
+							"query": [
+								{
+									"key": "parent",
+									"value": "acd0cfd7-4845-408c-9573-afad78e396a2",
+									"disabled": true
+								},
+								{
+									"key": "usage",
+									"value": "cms"
+								},
+								{
+									"key": "resource_type",
+									"value": "banner"
+								},
+								{
+									"key": "resource_name",
+									"value": "Iphone 12"
+								},
+								{
+									"key": "resource_id",
+									"value": "SRX-12345"
+								}
+							]
+						},
+						"description": "The \"parent\" field is optional and if not provided is take to be the root folder (i.e. null). \r\n\r\nIf provided it will denote the UUID of the desired parent folder."
+					},
+					"response": []
+				},
+				{
+					"name": "/entities/:uuid/upload",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/C:/Users/MihaiGaita/Downloads/k-mitch-hodge-SaKAWziPjgQ-unsplash.jpg"
+								}
+							],
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{DAM_HOST}}/entities/:uuid/upload?viewport=tablet&crop_offset_x=100&crop_offset_y=100&crop_width=600&crop_height=600",
+							"host": [
+								"{{DAM_HOST}}"
+							],
+							"path": [
+								"entities",
+								":uuid",
+								"upload"
+							],
+							"query": [
+								{
+									"key": "viewport",
+									"value": "tablet"
+								},
+								{
+									"key": "revert",
+									"value": "true",
+									"disabled": true
+								},
+								{
+									"key": "crop_offset_x",
+									"value": "100"
+								},
+								{
+									"key": "crop_offset_y",
+									"value": "100"
+								},
+								{
+									"key": "crop_width",
+									"value": "600"
+								},
+								{
+									"key": "crop_height",
+									"value": "600"
+								}
+							],
+							"variable": [
+								{
+									"key": "uuid",
+									"value": "626139da-4122-4579-8335-85f2f01a9431"
+								}
+							]
+						},
+						"description": "The \"parent\" field is optional and if not provided is take to be the root folder (i.e. null). \r\n\r\nIf provided it will denote the UUID of the desired parent folder."
+					},
+					"response": []
+				},
+				{
+					"name": "/entities/stack",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"uuids\": [\r\n        \"d57a04bb-93ef-4bc8-a11c-d85d31f1a865\",\r\n        \"2d075fc3-fd6d-4033-b197-828a0a8635c0\"\r\n    ],\r\n    \"usage\": \"pim\",\r\n    \"resource_type\": \"product\",\r\n    \"resource_name\": \"Iphone 12\",\r\n    \"resource_id\": \"SRX-12343\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{DAM_HOST}}/entities/stack",
+							"host": [
+								"{{DAM_HOST}}"
+							],
+							"path": [
+								"entities",
+								"stack"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Entities",
+			"item": [
+				{
+					"name": "/entities",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{DAM_HOST}}/entities?limit=500&offset=0&total_count=true&fld[type][eq][2]=stack",
+							"host": [
+								"{{DAM_HOST}}"
+							],
+							"path": [
+								"entities"
+							],
+							"query": [
+								{
+									"key": "search_for",
+									"value": "rai",
+									"disabled": true
+								},
+								{
+									"key": "limit",
+									"value": "500"
+								},
+								{
+									"key": "offset",
+									"value": "0"
+								},
+								{
+									"key": "total_count",
+									"value": "true"
+								},
+								{
+									"key": "fld[name][eq][1]",
+									"value": "Desktop",
+									"disabled": true
+								},
+								{
+									"key": "fld[type][eq][2]",
+									"value": "stack"
+								},
+								{
+									"key": "ops",
+									"value": "([1]AND[2])",
+									"disabled": true
+								},
+								{
+									"key": "ord[created_at]",
+									"value": "DESC",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/entities/:uuid",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{DAM_HOST}}/entities/:uuid",
+							"host": [
+								"{{DAM_HOST}}"
+							],
+							"path": [
+								"entities",
+								":uuid"
+							],
+							"variable": [
+								{
+									"key": "uuid",
+									"value": "d57a04bb-93ef-4bc8-a11c-d85d31f1a865"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/entities",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Folder 1\",\r\n    \"tags\": [\"Tag1\", \"Tag2\"]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{DAM_HOST}}/entities",
+							"host": [
+								"{{DAM_HOST}}"
+							],
+							"path": [
+								"entities"
+							]
+						},
+						"description": "The \"parent\" field is optional and if not provided is take to be the root folder (i.e. null). \r\n\r\nIf provided it will denote the UUID of the desired parent folder."
+					},
+					"response": []
+				},
+				{
+					"name": "/entities",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{DAM_HOST}}/entities?fld[status][eq]=active",
+							"host": [
+								"{{DAM_HOST}}"
+							],
+							"path": [
+								"entities"
+							],
+							"query": [
+								{
+									"key": "fld[status][eq]",
+									"value": "active"
+								},
+								{
+									"key": "fld[type][eq]",
+									"value": "file",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/entities/:uuid",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{DAM_HOST}}/entities/:uuid",
+							"host": [
+								"{{DAM_HOST}}"
+							],
+							"path": [
+								"entities",
+								":uuid"
+							],
+							"variable": [
+								{
+									"key": "uuid",
+									"value": "8fba20a0-9160-4d13-bfcf-a2acb0208965"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Tags",
+			"item": [
+				{
+					"name": "/tags",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{DAM_HOST}}/tags?limit=500&offset=0&total_count=true&fld[name][ilike][1]=tag&ord[name]=ASC",
+							"host": [
+								"{{DAM_HOST}}"
+							],
+							"path": [
+								"tags"
+							],
+							"query": [
+								{
+									"key": "limit",
+									"value": "500"
+								},
+								{
+									"key": "offset",
+									"value": "0"
+								},
+								{
+									"key": "total_count",
+									"value": "true"
+								},
+								{
+									"key": "fld[name][ilike][1]",
+									"value": "tag"
+								},
+								{
+									"key": "ord[name]",
+									"value": "ASC"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/tags/:uuid",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{DAM_HOST}}/tags/:uuid",
+							"host": [
+								"{{DAM_HOST}}"
+							],
+							"path": [
+								"tags",
+								":uuid"
+							],
+							"variable": [
+								{
+									"key": "uuid",
+									"value": "8cabb3a1-9a5b-4be4-aba4-31212401e094"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/tags",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Tag3\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{DAM_HOST}}/tags",
+							"host": [
+								"{{DAM_HOST}}"
+							],
+							"path": [
+								"tags"
+							]
+						},
+						"description": "The \"parent\" field is optional and if not provided is take to be the root folder (i.e. null). \r\n\r\nIf provided it will denote the UUID of the desired parent folder."
+					},
+					"response": []
+				},
+				{
+					"name": "/tags",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{DAM_HOST}}/tags?fld[name][eq]=Tag1",
+							"host": [
+								"{{DAM_HOST}}"
+							],
+							"path": [
+								"tags"
+							],
+							"query": [
+								{
+									"key": "fld[name][eq]",
+									"value": "Tag1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/tags/:uuid",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{DAM_HOST}}/tags/:uuid",
+							"host": [
+								"{{DAM_HOST}}"
+							],
+							"path": [
+								"tags",
+								":uuid"
+							],
+							"variable": [
+								{
+									"key": "uuid",
+									"value": "43c38adc-b0b6-470e-bc54-242100519139"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Config",
+			"item": [
+				{
+					"name": "/config",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{DAM_HOST}}/config/",
+							"host": [
+								"{{DAM_HOST}}"
+							],
+							"path": [
+								"config",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/config/:id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{DAM_HOST}}/config/:id",
+							"host": [
+								"{{DAM_HOST}}"
+							],
+							"path": [
+								"config",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "dam"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/config",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": \"dfxd\",\r\n    \"min_rez_vertical\" : 1000, \r\n    \"min_rez_horizontal\": 1500,\r\n    \"max_rez_vertical\": 2000,\r\n    \"max_rez_horizontal\": 3000,\r\n    \"variant_resolutions\": {\r\n        \"desktop\": {\r\n            \"v1\": { \"width\": 2334, \"height\": 3423 }\r\n        }\r\n    },\r\n    \"resource_types\": [\"banner\", \"page\", \"block\"]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{DAM_HOST}}/config",
+							"host": [
+								"{{DAM_HOST}}"
+							],
+							"path": [
+								"config"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/config/:id",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"min_rez_vertical\" : 1001, \r\n    \"min_rez_horizontal\": 1501,\r\n    \"max_rez_vertical\": 2001,\r\n    \"max_rez_horizontal\": 3001,\r\n    \"variant_resolutions\": {\r\n        \"desktop\": {\r\n            \"v1\": { \"width\": 2001, \"height\": 3001 }\r\n        }\r\n    },\r\n    \"resource_types\": [\"banner\"]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{DAM_HOST}}/config/:id",
+							"host": [
+								"{{DAM_HOST}}"
+							],
+							"path": [
+								"config",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "dfxd"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/config/:id",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{DAM_HOST}}/config/:id",
+							"host": [
+								"{{DAM_HOST}}"
+							],
+							"path": [
+								"config",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "dfd"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/config",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{DAM_HOST}}/config?fld[id][eq]=cms",
+							"host": [
+								"{{DAM_HOST}}"
+							],
+							"path": [
+								"config"
+							],
+							"query": [
+								{
+									"key": "fld[id][eq]",
+									"value": "cms"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Health-check",
+			"item": [
+				{
+					"name": "/ping",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3003/ping",
+							"host": [
+								"localhost"
+							],
+							"port": "3003",
+							"path": [
+								"ping"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "DAM_HOST",
+			"value": "http://localhost:3003/api/v1"
+		}
+	]
+}

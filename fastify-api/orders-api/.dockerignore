@@ -1,0 +1,29 @@
+# By negating patterns to ignore we have effectively a whitelist of what
+# will be sent to the Dockear Daemon build context when bulding an image
+
+# Ignore everything
+**
+
+# And then allow files and directories
+
+!package-lock.json
+!package.json
+!plugins
+!routes
+!schemas
+!handlers
+!hooks
+!test
+!locales
+!db
+!appConfig.js
+!server.js
+!setup.js
+!.sequelizerc
+!helpers
+!consumers.js
+!consumersSetup.js
+!messageHandlers
+!services
+!deployments
+!pubSubConfig.js

@@ -1,0 +1,218 @@
+{
+	"info": {
+		"_postman_id": "34d369bc-852a-4b53-b9af-051d31b7434e",
+		"name": "OMS",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Orders",
+			"item": [
+				{
+					"name": "/orders",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{OMS_HOST}}/orders/?limit=50&offset=0&total_count=true",
+							"host": [
+								"{{OMS_HOST}}"
+							],
+							"path": [
+								"orders",
+								""
+							],
+							"query": [
+								{
+									"key": "limit",
+									"value": "50"
+								},
+								{
+									"key": "offset",
+									"value": "0"
+								},
+								{
+									"key": "total_count",
+									"value": "true"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/orders/:increment_id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{OMS_HOST}}/orders/:increment_id?available_quantities=true",
+							"host": [
+								"{{OMS_HOST}}"
+							],
+							"path": [
+								"orders",
+								":increment_id"
+							],
+							"query": [
+								{
+									"key": "available_quantities",
+									"value": "true"
+								}
+							],
+							"variable": [
+								{
+									"key": "increment_id",
+									"value": "EXP0000052276"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Returns",
+			"item": [
+				{
+					"name": "/returns",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{OMS_HOST}}/returns?total_count=true&limit=50&fld[increment_id][eq]=EXP0000052276",
+							"host": [
+								"{{OMS_HOST}}"
+							],
+							"path": [
+								"returns"
+							],
+							"query": [
+								{
+									"key": "total_count",
+									"value": "true"
+								},
+								{
+									"key": "limit",
+									"value": "50"
+								},
+								{
+									"key": "fld[increment_id][eq]",
+									"value": "EXP0000052276"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/orders/:increment_id/returns",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"return_type\": \"Replacement\",\r\n    \"pickup_method\": \"Courier\",\r\n    \"recipient_name\": \"Galer Gabriel\",\r\n    \"recipient_phone\": \"0727331163\",\r\n    \"county\": \"Bucharest\",\r\n    \"city\": \"Bucharest\",\r\n    \"street\": \"Bld. Ion Mihalache\",\r\n    \"street_no\": \"99\",\r\n    \"address_details\": \"\",\r\n    \"postcode\": \"011777\",\r\n    \"customer_iban\": \"RO49AAAA1B31007593840000\",\r\n    \"customer_bank\": \"Second Bank\",\r\n    \"bank_account_beneficiary\": \"Galer Gabriel\",\r\n    \"products\": [\r\n        {\r\n            \"pid\": \"1412\",\r\n            \"quantity\": 7,\r\n            \"reason\": \"Wrong product\"\r\n        }\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{OMS_HOST}}/orders/:increment_id/returns",
+							"host": [
+								"{{OMS_HOST}}"
+							],
+							"path": [
+								"orders",
+								":increment_id",
+								"returns"
+							],
+							"variable": [
+								{
+									"key": "increment_id",
+									"value": "EXP0000052276"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Health-check",
+			"item": [
+				{
+					"name": "/ping",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{OMS_BASE_URL}}/ping",
+							"host": [
+								"{{OMS_BASE_URL}}"
+							],
+							"path": [
+								"ping"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "OMS_HOST",
+			"value": "http://localhost:3004/api/v1"
+		},
+		{
+			"key": "OMS_BASE_URL",
+			"value": "http://localhost:3004"
+		}
+	]
+}

@@ -1,0 +1,61 @@
+def sshKey = ''
+
+pipeline {
+    environment {
+        PROJECT = "explorado-ecomm-dev"
+        APP_NAME = "oms"
+        CLUSTER = "ecomm-cluster-dev"
+        CLUSTER_ZONE = "europe-west1-b"
+        IMAGE_TAG = "eu.gcr.io/${PROJECT}/${APP_NAME}:${env.BUILD_NUMBER}"
+        JENKINS_CRED = "${PROJECT}"
+    }
+    agent {
+        kubernetes {
+            cloud 'jenkins-explorado'
+            defaultContainer 'jnlp'
+            yamlFile 'deployments/build/jenkins-pod.yaml'
+        }
+    }
+    stages {
+        stage('Init') {
+            steps {
+                script {
+                    withCredentials([
+                        sshUserPrivateKey(
+                            credentialsId: '8bb8ccc3-5b46-4c13-a9a5-4a161c8d04eb',
+                            keyFileVariable: 'keyFile',
+                            passphraseVariable: 'passphrase',
+                            usernameVariable: 'username'
+                        )
+                    ]) {
+                        sshKey = readFile(keyFile).trim()
+                    }
+                }
+            }
+        }
+        stage('Build and Publish Docker Image') {
+            steps {
+                container('docker') {
+                    sh '#!/bin/sh -e\n' + "echo '${sshKey}' > ./deployments/id_rsa"
+                    script {
+                        def dockerfile = './deployments/Dockerfile'
+                        def app = docker.build("eu.gcr.io/${PROJECT}/${APP_NAME}", "-f ${dockerfile} .")
+                        docker.withRegistry('https://eu.gcr.io', "gcr:${JENKINS_CRED}") {
+                            app.push("${env.BUILD_NUMBER}")
+                            app.push("latest")
+                        }
+                    }
+                }
+            }
+        }
+        stage('Deploy to GKE Cluster') {
+            steps {
+                container('kubectl') {
+                    sh("sed -i.bak 's#eu.gcr.io/explorado-ecomm-dev/oms:0.0.0#${IMAGE_TAG}#' ./deployments/k8s/deployment.yaml")
+                    step([$class: 'KubernetesEngineBuilder', namespace: "default", projectId: env.PROJECT, clusterName: env.CLUSTER, zone: env.CLUSTER_ZONE, manifestPattern: 'deployments/k8s/deployment.yaml', credentialsId: env.JENKINS_CRED, verifyDeployments: true])
+                    step([$class: 'KubernetesEngineBuilder', namespace: "default", projectId: env.PROJECT, clusterName: env.CLUSTER, zone: env.CLUSTER_ZONE, manifestPattern: 'deployments/k8s/service.yaml', credentialsId: env.JENKINS_CRED, verifyDeployments: true])
+                }
+            }
+        }
+    }
+}

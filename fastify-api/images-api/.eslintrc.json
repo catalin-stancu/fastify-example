@@ -1,0 +1,106 @@
+{
+    "extends": [
+        "airbnb-base"
+    ],
+    "env": {
+        "node": true,
+        "mocha": true
+    },
+    "parserOptions": {
+        "ecmaVersion": 11,
+        "sourceType": "module"
+    },
+    "rules": {
+        "no-param-reassign": [
+            "error", 
+            { 
+                "props": false
+            }
+        ],
+        "no-useless-escape": "off",
+        "no-return-assign": "off",
+        "indent": [
+            "error",
+            2,
+            {
+                "SwitchCase": 1
+            }
+        ],
+        "eol-last": [
+            "error",
+            "never"
+        ],
+        "linebreak-style": ["error", "windows"],
+        "operator-linebreak": [
+            "error",
+            "before"
+        ],
+        "arrow-parens": [
+            "error", 
+            "as-needed", 
+            { 
+                "requireForBlockBody": false 
+            }
+        ],
+        "object-curly-newline": "off",
+        "import/extensions": "off",
+        "import/prefer-default-export": "off",
+        "import/no-unresolved": "off",
+        "import/no-named-as-default": "off",
+        "import/no-named-as-default-member": "off",
+        "no-console": "warn",
+        "no-process-env": "off",
+        "no-negated-condition": "off",
+        "consistent-return": "off",
+        "comma-dangle": ["error", "never"],
+        "require-atomic-updates": "off",
+        "no-empty-function": "off",
+        "no-unused-vars": "warn",
+        "no-useless-concat": "warn",
+        "prefer-template": "off",
+        "no-restricted-syntax": "off",
+        "id-length": [
+            "warn", 
+            { 
+                "exceptions": [
+                    "S",
+                    "_",
+                    "t"
+                ] 
+            }
+        ],
+        "no-nested-ternary": "off",
+        "max-len": [
+            "warn",
+            {
+                "code": 100
+            }
+        ],
+        "require-jsdoc": [
+            "error",
+            {
+                "require": {
+                    "FunctionDeclaration": true,
+                    "MethodDefinition": true,
+                    "ClassDeclaration": true,
+                    "ArrowFunctionExpression": true,
+                    "FunctionExpression": true
+                }
+            }
+        ],
+        "valid-jsdoc": [
+            "error",
+            {
+                "requireReturnDescription": false
+            }
+        ]
+    },
+    "overrides": [
+        {
+            "files": "*.test.js",
+            "rules": {
+                "no-unused-expressions": "off"
+            }
+        }
+    ]
+}
