@@ -1,8 +1,8 @@
 {
-  "name": "fastify-global-plugins",
-  "title": "Fastify global plugins",
+  "name": "plugins",
+  "title": "plugins",
   "version": "0.21.1",
-  "description": "Shared collection of Fastify global plugins, that can be used across any Node.js project that uses the Fastify framework.",
+  "description": "",
   "main": "baseSetup.js",
   "type": "module",
   "scripts": {
@@ -20,12 +20,7 @@
     "node": ">=14.15.0",
     "npm": ">=7.3.0"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://bitbucket.org/explorado/fastify-global-plugins.git"
-  },
   "author": "",
-  "homepage": "https://bitbucket.org/explorado/fastify-global-plugins#readme",
   "dependencies": {
     "@google-cloud/pubsub": "^2.11.0",
     "@google-cloud/storage": "^5.8.5",
