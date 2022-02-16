@@ -1,16 +1,12 @@
 {
-  "name": "oms-api",
+  "name": "orders",
   "version": "1.0.0",
-  "description": "Microservice for Order Management",
+  "description": "",
   "main": "server.js",
   "type": "module",
   "scripts": {
     "// Docker": "",
-    "docker:build": "docker image build . -t oms-api",
     "docker:run-dev": "docker-compose --env-file .env.dev up -d",
-    "docker:run-stage": "env-cmd -f .env.stage cross-env-shell \"docker container run --rm -d --env-file .env.stage -p $PORT:$PORT --init --name dam-api-stage dam-api\"",
-    "docker:run-prod": "env-cmd -f .env.prod cross-env-shell \"docker container run -d --env-file .env.prod -p $PORT:$PORT --init --name dam-api-prod dam-api\"",
-    "docker:stop": "docker container stop dam-api-prod || docker container stop dam-api-stage",
     "// Sequelize migrations scripts for dev env": "",
     "migrate:dev:create-db": "env-cmd -f .env.dev npx sequelize db:create",
     "migrate:dev:drop-db": "env-cmd -f .env.dev npx sequelize db:drop",
@@ -49,10 +45,6 @@
     "node": ">=14.15.0",
     "npm": ">=7.3.0"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://bitbucket.org/explorado/oms-api.git"
-  },
   "author": "",
   "nodemonConfig": {
     "ignore": [
@@ -73,11 +65,9 @@
       "gcp*.json"
     ]
   },
-  "homepage": "https://explorado.atlassian.net/wiki/spaces/EXP/pages/220987393/Explorado+Node.js+Team+Modules+Documentation",
   "dependencies": {
     "fastify": "^3.19.0",
     "fastify-autoload": "^3.7.0",
-    "fastify-global-plugins": "bitbucket:explorado/fastify-global-plugins#semver:^0.21.1",
     "fastify-plugin": "^3.0.0",
     "fastify-swagger": "^4.7.0",
     "fluent-json-schema": "^3.0.0",
