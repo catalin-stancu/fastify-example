@@ -46,10 +46,6 @@
     "node": ">=14.15.0",
     "npm": ">=7.3.0"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://bitbucket.org/explorado/dam-api.git"
-  },
   "author": "",
   "nodemonConfig": {
     "ignore": [
@@ -70,11 +66,9 @@
       "gcp*.json"
     ]
   },
-  "homepage": "https://explorado.atlassian.net/wiki/spaces/EXP/pages/220987393/Explorado+Node.js+Team+Modules+Documentation",
   "dependencies": {
     "fastify": "^3.14.2",
     "fastify-autoload": "^3.7.0",
-    "fastify-global-plugins": "bitbucket:explorado/fastify-global-plugins#semver:^0.20.0",
     "fastify-plugin": "^3.0.0",
     "fastify-swagger": "^4.7.0",
     "fluent-json-schema": "^2.0.4",
